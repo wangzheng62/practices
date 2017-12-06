@@ -1,0 +1,41 @@
+import time,threading,sched
+#time
+t=time.time()
+print(t)
+t1=time.localtime(t)
+print(t1)
+t2=time.gmtime(t)
+print(t2)
+t3=time.ctime(t)
+print(t3)
+t4=time.mktime(t1)
+print(t4)
+t5=time.monotonic()
+print(t5)
+time.sleep(1)
+print(time.time())
+t6=time.strftime("%y%m%d",t1)
+print(t6)
+print(t1.tm_yday)
+#threading
+def hello():
+    print("hello")
+tme=threading.Timer(15,hello)
+tme.start()
+#sched
+s=sched.scheduler(time.time)
+def print_time(a='default'):
+    print("From print_time", time.time(), a)
+def print_some_times():
+    now=time.time()
+    print(now)
+    s.enter(10, 1, print_time)
+    s.enter(5, 2, print_time, argument=('positional',))
+    s.enter(5, 1, print_time, kwargs={'a': 'keyword'})
+    s.enterabs(1512543314, 3, print_time, argument=('test',))
+    print(s.queue)
+    dl=s.run(False)
+    print(len(s.queue))
+    print(dl)
+    print(time.time())
+print_some_times()
