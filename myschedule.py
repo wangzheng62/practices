@@ -34,7 +34,7 @@ def print_some_times():
     s.enter(5, 1, print_time, kwargs={'a': 'keyword'})
     s.enterabs(1512543314, 3, print_time, argument=('test',))
     print(s.queue)
-    dl=s.run(False)
+    dl=s.run()
     print(len(s.queue))
     print(dl)
     print(time.time())
